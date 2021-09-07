@@ -7,7 +7,8 @@ $ cd backend
 -- instale as dependências do back
 $ yarn
 
-# Acesse a Past frontend
+# Acesse a Pasta frontend
+-- $ cd ..
 $ cd frontend
 
 -- instale as dependências do front
