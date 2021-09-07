@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { getRepository } from "typeorm";
 import { Product } from "../models/Product";
+import { ProductService } from "../services/productService";
 
 class ProductController {
   async create(request: Request, response: Response) {
@@ -11,24 +12,9 @@ class ProductController {
       priceLargeSize
     } = request.body;
     
-    const productsRepository = getRepository(Product)
+    const productService = new ProductService()
 
-    const productAlreadyExists = await productsRepository.findOne({
-      name
-    })
-
-    if(productAlreadyExists) {
-      return response.status(400).json({error: "Product already exists"})
-    }
-
-    const product = productsRepository.create({
-      name,
-      priceSmallSize,
-      priceMidSize,
-      priceLargeSize
-    })
-
-    await productsRepository.save(product)
+    productService.create({name, priceSmallSize, priceMidSize, priceLargeSize})
 
     response.redirect('http://localhost:3000/tools');
   }
@@ -43,27 +29,19 @@ class ProductController {
       priceLargeSize
     } = request.body
 
-    const newUser = {
-      name,
-      priceSmallSize,
-      priceMidSize,
-      priceLargeSize
-    }
-
     try {
-      const productsRepository = getRepository(Product)
+      const productService = new ProductService()
 
-      const ProductAlreadyExists = await productsRepository.findOne({name})
-      
-      if(ProductAlreadyExists) {
-        return response.json({error: 'product already exists'})
-      }
-
-      await productsRepository.update(id, newUser)
+      await productService.edit(id, { 
+        name,
+        priceSmallSize,
+        priceMidSize,
+        priceLargeSize
+      })
 
       response.redirect('http://localhost:3000/tools')
     } catch (error) {
-      response.json({error})
+      response.json({error: "Error update"})
     }
   }
 
@@ -71,9 +49,10 @@ class ProductController {
     const {id} = request.params
 
     try {
-      const productsRepository = getRepository(Product)
+      const productService = new ProductService()
 
-      await productsRepository.delete(id)
+      await productService.delete(id)
+
       response.json('Product deleted')
     } catch (error) {
       response.send("Error delete")
@@ -84,20 +63,20 @@ class ProductController {
     const {id} = request.params
 
     try {
-      const productsRepository = getRepository(Product)
+      const productService = new ProductService()
 
-      const product = await productsRepository.findOne({id})
+      const product = await productService.listProduct(id)
 
       response.json(product)
     } catch (error) {
-      return response.status(400).json({ error })
+      return response.status(400).json({ error: "Error" })
     }
   }
 
   async listAllProducts(request: Request, response: Response){
-    const productsRepository = getRepository(Product)
+    const productService = new ProductService()
 
-    const allProducts = await productsRepository.find()
+    const allProducts = await productService.listAllProducts()
 
     response.json(allProducts)
   }

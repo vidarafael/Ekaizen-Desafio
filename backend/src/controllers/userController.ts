@@ -1,6 +1,5 @@
-import { Request, response, Response } from 'express'
-import { getRepository } from 'typeorm'
-import { User } from '../models/User'
+import { Request, Response } from 'express'
+import { UserService } from '../services/userService'
 
 class UserController {
   async create(request: Request, response: Response) {
@@ -21,16 +20,10 @@ class UserController {
         companySize,
         quantityEmployees
        } = request.body
-  
-      const usersRepository = getRepository(User)
-  
-      const userAlreadyExists = await usersRepository.findOne({ cnpj })
-    
-      if(userAlreadyExists) {
-        return response.status(400).json({ error: 'User already exists' })
-      }
-  
-      const user = usersRepository.create({
+
+      const userService = new UserService()
+
+      await userService.create({
         nameClientContact,
         emailContact,
         telephoneContact,
@@ -46,13 +39,11 @@ class UserController {
         companySize,
         quantityEmployees
       })
-  
-      await usersRepository.save(user)
-  
+      
       response.redirect('http://localhost:3000/')
 
     } catch (error) {
-      response.json({error})
+      response.json("User already exists")
     }
     
   }
@@ -61,12 +52,12 @@ class UserController {
     const {id} = request.params
 
     try {
-      const usersRepository = getRepository(User)
+      const userService = new UserService()
 
-      await usersRepository.delete(id)
-      response.json('user deleted')
+      await userService.delete(id)
+      response.json('User deleted')
     } catch (error) {
-      response.send("Error delete")
+      response.send("Error")
     }
   }
 
@@ -90,35 +81,24 @@ class UserController {
       quantityEmployees
      } = request.body
 
-    const newUser = {
-      nameClientContact,
-      emailContact,
-      telephoneContact,
-      nameFantasyContact,
-      email,
-      telephoneCommercial,
-      cnpj,
-      cep,
-      address,
-      district,
-      city,
-      state,
-      companySize,
-      quantityEmployees
-    }
-
-    console.log(newUser)
-
     try {
-      const usersRepository = getRepository(User)
+      const userService = new UserService()
 
-      const userAlreadyExists = await usersRepository.findOne(cnpj)
-
-      if(userAlreadyExists) {
-        return response.json({ error: "User Already Exists"})
-      }
-
-      await usersRepository.update(id, newUser)
+      await userService.edit(id, {
+        nameClientContact,
+        emailContact,
+        telephoneContact,
+        nameFantasyContact,
+        email,
+        telephoneCommercial,
+        cnpj,
+        cep,
+        address,
+        district,
+        city,
+        state,
+        companySize,
+        quantityEmployees})
 
       response.redirect('http://localhost:3000/')
     } catch (error) {
@@ -130,26 +110,26 @@ class UserController {
     const {id} = request.params
 
     try {
-      const usersRepository = getRepository(User)
+      const userService = new UserService()
 
-      const user = await usersRepository.findOne({id})
+      const user = await userService.listUser(id)
 
       response.json(user)
     } catch (error) {
-      return response.status(400).json({ error })
+      return response.status(400).json({ error: "Error" })
     }
   }
 
   async listAllUsers(request: Request, response: Response) {
     try {
-      const usersRepository = getRepository(User)
-
-      const allUsers = await usersRepository.find()
+      const userService = new UserService()
       
+      const allUsers = await userService.listAllUsers()
+
       response.json(allUsers)
 
     } catch (error) {
-      return response.status(400).json({ error })
+      return response.status(400).json({ error: "Error" })
     }
     
   }

@@ -27,7 +27,7 @@ function EditTool() {
     <div className="container">
       <div className="content">
         <header>    
-          <h2>Edição da Tool</h2>
+          <h2>Edição da Ferramenta</h2>
         </header>
         <hr />
 

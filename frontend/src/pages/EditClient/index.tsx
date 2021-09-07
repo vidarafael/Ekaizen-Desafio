@@ -37,7 +37,7 @@ function EditClient() {
     <div className="container">
       <div className="content">
         <header>    
-          <h2>Criação de Orçamento</h2>
+          <h2>Edição Cliente</h2>
         </header>
         <hr />
 

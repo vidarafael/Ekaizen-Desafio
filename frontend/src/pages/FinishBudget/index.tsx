@@ -57,7 +57,7 @@ function FinishBudget() {
     <div className="container">
       <div className="content">
           <header>
-            <h2>Cadastros de Ferramentas</h2>
+            <h2>Criação de Orçamento</h2>
           </header>
           <hr />
 
