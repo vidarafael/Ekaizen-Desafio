@@ -1,0 +1,171 @@
+.container {
+  max-width: 1980px;
+  min-height: 100vh;
+  position: relative;
+
+  .content {
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    border-radius: 0.25rem;
+
+    header {
+      max-width: 1480px;
+      margin: 0 auto;
+
+      h2 {
+        padding: 1rem 0;
+      }
+    }
+
+    hr {
+      border: 1px solid #d4d9de;
+      border-bottom: 3rem;
+    }
+
+    // .contentBody {
+    // max-width: 1480px;
+    // margin: 4rem auto;
+    // padding: 2rem 0;
+
+    .infoProduct {
+      max-width: 1480px;
+      margin: 8rem auto 5rem;
+
+      display: flex;
+      align-items: center;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+
+        & + div {
+          margin-left: 1rem;
+
+          input {
+            margin-top: 4px;
+          }
+        }
+
+        span {
+          font-weight: 600;
+        }
+
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: bottom;
+
+          input {
+            height: 25px;
+          }
+
+          label {
+            margin: 4px 4px 0;
+          }
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+      margin: 4rem auto;
+      border-spacing: 0;
+      padding: 0 2rem;
+
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+      }
+
+      thead {
+        th {
+          font-weight: bold;
+          padding: 1rem 2rem;
+          text-align: center;
+          line-height: 1.5rem;
+          border-left: 1px solid #d4d9de;
+          border-bottom: 1px solid #d4d9de;
+
+          &:last-child {
+            border-right: 1px solid #d4d9de;
+          }
+        }
+
+        td {
+          padding: 1rem;
+          text-align: center;
+          border-left: 1px solid #d4d9de;
+          border-bottom: 1px solid #d4d9de;
+
+          .firstInput {
+            width: 500px;
+          }
+
+          input {
+            border-radius: 0.25rem;
+            padding: 0.125rem 0.75rem;
+            border: 1px solid #d4d9de;
+          }
+
+          &:last-child {
+            border-right: 1px solid #d4d9de;
+          }
+        }
+      }
+
+      tbody {
+        tr:nth-child(even) {
+          background-color: #f7f9fc;
+        }
+
+        td:last-child {
+          margin-bottom: 24px;
+        }
+
+        td {
+          padding: 1rem;
+          text-align: center;
+          line-height: 1.5rem;
+          border-left: 1px solid #d4d9de;
+          border-bottom: 1px solid #d4d9de;
+
+          button {
+            background: none;
+            border: none;
+          }
+
+          &:last-child {
+            border-right: 1px solid #d4d9de;
+          }
+        }
+      }
+    }
+    // }
+  }
+
+  .divBtnBudget {
+    position: absolute;
+    height: 2.5rem;
+    right: 8rem;
+
+    button {
+      width: 6rem;
+      background-color: #99143f;
+      padding: 0.25rem 0;
+      font-size: 1rem;
+      color: white;
+      margin-left: 4px;
+
+      border-radius: 0.25rem;
+      border: none;
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

@@ -1,0 +1,147 @@
+.container {
+  max-width: 1980px;
+  height: 100vh;
+  position: relative;
+
+  .content {
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 0.25rem;
+
+    header {
+      max-width: 1480px;
+      margin: 0 auto;
+
+      h2 {
+        padding: 1rem 0;
+      }
+
+      .btnHome {
+        width: 8rem;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+
+        border: none;
+        background-color: #99143f;
+        color: white;
+        font-size: 1rem;
+
+        transition: filter 0.3s;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+
+    hr {
+      border: 1px solid #d4d9de;
+      border-bottom: 3rem;
+    }
+
+    table {
+      width: 100%;
+      margin: 4rem auto;
+      border-spacing: 0;
+      padding: 0 2rem;
+
+      thead {
+        th {
+          font-weight: bold;
+          padding: 1rem 2rem;
+          text-align: center;
+          line-height: 1.5rem;
+          border-left: 1px solid #d4d9de;
+          border-bottom: 1px solid #d4d9de;
+
+          &:last-child {
+            border-right: 1px solid #d4d9de;
+          }
+
+          .btnCreate {
+            width: 4rem;
+            background-color: #145999;
+            padding: 0.125rem 0;
+            font-size: 1.5rem;
+            color: white;
+
+            border-radius: 0.25rem;
+            border: none;
+
+            transition: filter 0.2s;
+
+            &:hover {
+              filter: brightness(0.9);
+            }
+          }
+        }
+
+        td {
+          padding: 1rem;
+          text-align: center;
+          border-left: 1px solid #d4d9de;
+          border-bottom: 1px solid #d4d9de;
+
+          .firstInput {
+            width: 500px;
+          }
+
+          input {
+            border-radius: 0.25rem;
+            padding: 0.125rem 0.75rem;
+            border: 1px solid #d4d9de;
+          }
+
+          &:last-child {
+            border-right: 1px solid #d4d9de;
+          }
+        }
+      }
+
+      tbody {
+        tr:nth-child(even) {
+          background-color: #f7f9fc;
+        }
+
+        td {
+          padding: 1rem;
+          text-align: center;
+          line-height: 1.5rem;
+          border-left: 1px solid #d4d9de;
+          border-bottom: 1px solid #d4d9de;
+
+          button {
+            background: none;
+            border: none;
+          }
+
+          &:last-child {
+            border-right: 1px solid #d4d9de;
+          }
+        }
+      }
+    }
+  }
+
+  .divBtnTools {
+    position: absolute;
+    right: 10rem;
+
+    button {
+      width: 6rem;
+      background-color: #145999;
+      padding: 0.25rem 0;
+      font-size: 1rem;
+      color: white;
+
+      border-radius: 0.25rem;
+      border: none;
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}
